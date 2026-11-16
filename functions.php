@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-define( 'NOTESCARRIER_VERSION', '1.2.3' );
+define( 'NOTESCARRIER_VERSION', '1.3.0' );
 
 
 
