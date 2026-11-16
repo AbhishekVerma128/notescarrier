@@ -31,6 +31,9 @@ get_header();
 					<?php if ( has_post_thumbnail() ) : ?>
 						<figure class="article-image"><?php the_post_thumbnail( 'notescarrier-featured' ); ?></figure>
 					<?php endif; ?>
+					<?php if ( function_exists( 'notescarrier_get_ad_unit' ) ) : ?>
+						<?php echo notescarrier_get_ad_unit( 'article_top' ); ?>
+					<?php endif; ?>
 					<div class="article-content entry-content">
 						<?php
 						the_content();
