@@ -68,3 +68,8 @@
 		</div>
 	</header>
 	<?php get_template_part( 'template-parts/latest', 'notification' ); ?>
+	<?php if ( function_exists( 'notescarrier_get_ad_unit' ) ) : ?>
+		<div class="container nc-header-ad-container">
+			<?php echo notescarrier_get_ad_unit( 'header' ); ?>
+		</div>
+	<?php endif; ?>
