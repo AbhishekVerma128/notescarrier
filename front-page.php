@@ -56,14 +56,15 @@ $latest_page = max( 1, absint( get_query_var( 'paged' ) ), absint( get_query_var
 					)
 				);
 				if ( $latest_query->have_posts() ) :
-					 = 0;
-					while ( ->have_posts() ) :
-						->the_post();
-						++;
+					$nc_card_count = 0;
+					while ( $latest_query->have_posts() ) :
+						$latest_query->the_post();
+						$nc_card_count++;
 						get_template_part( 'template-parts/content', 'card' );
-						if ( ( 3 ===  || 8 ===  ) && function_exists( 'notescarrier_get_ad_unit' ) ) :
+						if ( ( 3 === $nc_card_count || 8 === $nc_card_count ) && function_exists( 'notescarrier_get_ad_unit' ) ) :
 							echo notescarrier_get_ad_unit( 'feed' );
 						endif;
+					endwhile;
 					wp_reset_postdata();
 					if ( $latest_query->max_num_pages > 1 ) :
 						$pagination_links = paginate_links(
