@@ -1498,81 +1498,82 @@ add_filter( 'wp_sitemaps_add_provider', 'notescarrier_remove_users_sitemap', 10,
 /**
  * Return Google AdSense responsive ad units for NotesCarrier.
  *
- * @param string  Type of ad slot: header, article_top, article_mid1, article_mid2, article_bottom, feed, sidebar.
+ * @param string $slot Type of ad slot: header, article_top, article_mid1, article_mid2, article_bottom, feed, sidebar.
  * @return string HTML markup for the ad unit.
  */
-function notescarrier_get_ad_unit(  = 'article_mid1' ) {
-	 = 'ca-pub-4172398708042636';
+function notescarrier_get_ad_unit( $slot = "article_mid1" ) {
+	$client = "ca-pub-4172398708042636";
 
-	switch (  ) {
-		case 'header':
-			return '<div class="nc-ad-wrapper nc-ad-header-banner"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><!-- header_468x60_as --><ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="2240870246"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+	switch ( $slot ) {
+		case "header":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--header nc-ad-header-banner\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><!-- header_468x60_as --><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:inline-block;width:468px;height:60px\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"2240870246\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'article_top':
-			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-top"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "article_top":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--article-top nc-ad-in-article nc-ad-top\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"6450798201\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'article_mid1':
-			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-mid1"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "article_mid1":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--article-mid nc-ad-in-article nc-ad-mid1\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"6450798201\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'article_mid2':
-			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-mid2"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="1109212273" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "article_mid2":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--article-mid nc-ad-in-article nc-ad-mid2\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"1109212273\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'article_bottom':
-			return '<div class="nc-ad-wrapper nc-ad-multiplex nc-ad-bottom"><span class="nc-ad-label">' . esc_html__( 'Sponsored Resources', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="3760795920"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "article_bottom":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--article-bottom nc-ad-multiplex nc-ad-bottom\"><span class=\"nc-ad-label\">" . esc_html__( "Sponsored Resources", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-format=\"autorelaxed\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"3760795920\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'feed':
-			return '<div class="nc-ad-wrapper nc-ad-feed"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "feed":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--feed nc-ad-feed\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"6450798201\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
-		case 'sidebar':
-			return '<div class="nc-ad-wrapper nc-ad-sidebar"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="1109212273" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+		case "sidebar":
+			return "<div class=\"nc-ad-wrapper nc-ad-wrapper--sidebar nc-ad-sidebar\"><span class=\"nc-ad-label\">" . esc_html__( "Advertisement", "notescarrier" ) . "</span><ins class=\"adsbygoogle nc-ad-slot\" style=\"display:block\" data-ad-client=\"" . esc_attr( $client ) . "\" data-ad-slot=\"1109212273\" data-ad-format=\"auto\" data-full-width-responsive=\"true\"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>";
 
 		default:
-			return '';
+			return "";
 	}
 }
 
 /**
  * Automatically insert in-article ads into single post content.
  *
- * @param string  Post content.
+ * @param string $content Post content.
  * @return string Modified content with responsive ads.
  */
-function notescarrier_insert_article_ads(  ) {
-	if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
-		return ;
+function notescarrier_insert_article_ads( $content ) {
+	if ( ! is_singular( "post" ) || ! in_the_loop() || ! is_main_query() ) {
+		return $content;
 	}
 
-	 = explode( '</p>',  );
-	    = count(  ) - 1;
+	$paragraphs = explode( "</p>", $content );
+	$total_p    = count( $paragraphs ) - 1;
 
-	   = notescarrier_get_ad_unit( 'article_mid1' );
-	   = notescarrier_get_ad_unit( 'article_mid2' );
-	 = notescarrier_get_ad_unit( 'article_bottom' );
+	$ad_mid1   = notescarrier_get_ad_unit( "article_mid1" );
+	$ad_mid2   = notescarrier_get_ad_unit( "article_mid2" );
+	$ad_bottom = notescarrier_get_ad_unit( "article_bottom" );
 
-	if (  <= 1 ) {
-		return  . ;
+	if ( $total_p <= 1 ) {
+		return $content . $ad_bottom;
 	}
 
-	 = 2; // after 2nd paragraph
-	 = (  >= 6 ) ? (int) floor(  * 0.65 ) : ( (  >= 4 ) ? 4 : 0 );
+	$pos1 = 2; // after 2nd paragraph
+	$pos2 = ( $total_p >= 6 ) ? (int) floor( $total_p * 0.65 ) : ( ( $total_p >= 4 ) ? 4 : 0 );
 
-	 = '';
-	foreach (  as  =>  ) {
-		   =  + 1;
-		 .= ;
-		if (  <  ) {
-			 .= '</p>';
+	$new_content = "";
+	foreach ( $paragraphs as $index => $para ) {
+		$p_num        = $index + 1;
+		$new_content .= $para;
+		if ( $index < $total_p ) {
+			$new_content .= "</p>";
 		}
 
-		if (  ===  ) {
-			 .= ;
-		} elseif (  > 0 &&  ===  ) {
-			 .= ;
+		if ( $p_num === $pos1 ) {
+			$new_content .= $ad_mid1;
+		} elseif ( $pos2 > 0 && $p_num === $pos2 ) {
+			$new_content .= $ad_mid2;
 		}
 	}
 
-	 .= ;
+	$new_content .= $ad_bottom;
 
-	return ;
+	return $new_content;
 }
-add_filter( 'the_content', 'notescarrier_insert_article_ads', 20 );
+add_filter( "the_content", "notescarrier_insert_article_ads", 20 );
+
