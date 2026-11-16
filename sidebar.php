@@ -41,6 +41,10 @@
 		<?php endif; ?>
 	</section>
 
+	<?php if ( function_exists( 'notescarrier_get_ad_unit' ) ) : ?>
+		<?php echo notescarrier_get_ad_unit( 'sidebar' ); ?>
+	<?php endif; ?>
+
 	<section class="sidebar-panel sidebar-panel--topics">
 		<div class="sidebar-heading">
 			<p class="eyebrow"><?php esc_html_e( 'Find your focus', 'notescarrier' ); ?></p>
