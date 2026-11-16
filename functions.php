@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 
-define( 'NOTESCARRIER_VERSION', '1.3.0' );
+define( 'NOTESCARRIER_VERSION', '1.3.1' );
 
 
 
@@ -1494,3 +1494,85 @@ function notescarrier_remove_users_sitemap( $provider, $name ) {
 }
 
 add_filter( 'wp_sitemaps_add_provider', 'notescarrier_remove_users_sitemap', 10, 2 );
+
+/**
+ * Return Google AdSense responsive ad units for NotesCarrier.
+ *
+ * @param string  Type of ad slot: header, article_top, article_mid1, article_mid2, article_bottom, feed, sidebar.
+ * @return string HTML markup for the ad unit.
+ */
+function notescarrier_get_ad_unit(  = 'article_mid1' ) {
+	 = 'ca-pub-4172398708042636';
+
+	switch (  ) {
+		case 'header':
+			return '<div class="nc-ad-wrapper nc-ad-header-banner"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><!-- header_468x60_as --><ins class="adsbygoogle" style="display:inline-block;width:468px;height:60px" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="2240870246"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'article_top':
+			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-top"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'article_mid1':
+			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-mid1"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'article_mid2':
+			return '<div class="nc-ad-wrapper nc-ad-in-article nc-ad-mid2"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="1109212273" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'article_bottom':
+			return '<div class="nc-ad-wrapper nc-ad-multiplex nc-ad-bottom"><span class="nc-ad-label">' . esc_html__( 'Sponsored Resources', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="3760795920"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'feed':
+			return '<div class="nc-ad-wrapper nc-ad-feed"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="6450798201" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		case 'sidebar':
+			return '<div class="nc-ad-wrapper nc-ad-sidebar"><span class="nc-ad-label">' . esc_html__( 'Advertisement', 'notescarrier' ) . '</span><ins class="adsbygoogle" style="display:block" data-ad-client="' . esc_attr(  ) . '" data-ad-slot="1109212273" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>';
+
+		default:
+			return '';
+	}
+}
+
+/**
+ * Automatically insert in-article ads into single post content.
+ *
+ * @param string  Post content.
+ * @return string Modified content with responsive ads.
+ */
+function notescarrier_insert_article_ads(  ) {
+	if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
+		return ;
+	}
+
+	 = explode( '</p>',  );
+	    = count(  ) - 1;
+
+	   = notescarrier_get_ad_unit( 'article_mid1' );
+	   = notescarrier_get_ad_unit( 'article_mid2' );
+	 = notescarrier_get_ad_unit( 'article_bottom' );
+
+	if (  <= 1 ) {
+		return  . ;
+	}
+
+	 = 2; // after 2nd paragraph
+	 = (  >= 6 ) ? (int) floor(  * 0.65 ) : ( (  >= 4 ) ? 4 : 0 );
+
+	 = '';
+	foreach (  as  =>  ) {
+		   =  + 1;
+		 .= ;
+		if (  <  ) {
+			 .= '</p>';
+		}
+
+		if (  ===  ) {
+			 .= ;
+		} elseif (  > 0 &&  ===  ) {
+			 .= ;
+		}
+	}
+
+	 .= ;
+
+	return ;
+}
+add_filter( 'the_content', 'notescarrier_insert_article_ads', 20 );
