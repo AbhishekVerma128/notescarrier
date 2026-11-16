@@ -660,3 +660,123 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (prefers-reduced-motion: reduce) {
   .notification-carousel__track { transition: none; }
 }
+
+/* ==========================================================================
+   Google AdSense & Responsive Ad Units
+   ========================================================================== */
+.nc-ad-wrapper {
+  position: relative;
+  width: 100%;
+  margin-block: 28px;
+  clear: both;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.nc-ad-label {
+  display: inline-block;
+  margin-bottom: 6px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted, #64748b);
+  opacity: 0.85;
+}
+
+.nc-ad-slot {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Header Banner (Fixed 468x60 on desktop/tablet, scales on mobile) */
+.nc-ad-wrapper--header {
+  margin-block: 16px 8px;
+  padding: 10px 14px;
+  background: var(--paper, #ffffff);
+  border: 1px solid var(--line, #e2e8f0);
+  border-radius: var(--radius-md, 14px);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+}
+
+.nc-ad-wrapper--header .nc-ad-slot {
+  max-width: 468px;
+  overflow-x: auto;
+}
+
+/* Article In-Content Ads */
+.nc-ad-wrapper--article-top {
+  margin-block: 20px 24px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md, 14px);
+}
+
+.nc-ad-wrapper--article-mid {
+  margin-block: 32px;
+  padding: 14px 16px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: var(--radius-md, 14px);
+}
+
+.nc-ad-wrapper--article-bottom {
+  margin-block: 36px 20px;
+  padding: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md, 14px);
+}
+
+/* In-Feed Homepage Ads */
+.nc-ad-wrapper--feed {
+  margin-block: 16px;
+  padding: 18px 20px;
+  background: var(--paper, #ffffff);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+/* Sidebar Ads */
+.nc-ad-wrapper--sidebar {
+  margin-block: 14px;
+  padding: 18px;
+  background: var(--paper, #ffffff);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--radius-lg, 20px);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+@media (max-width: 520px) {
+  .nc-ad-wrapper {
+    margin-block: 20px;
+  }
+  .nc-ad-wrapper--header {
+    padding: 8px;
+    border-radius: 12px;
+  }
+  .nc-ad-wrapper--header .nc-ad-slot {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nc-ad-wrapper--feed,
+  .nc-ad-wrapper--sidebar,
+  .nc-ad-wrapper--article-top,
+  .nc-ad-wrapper--article-mid,
+  .nc-ad-wrapper--article-bottom {
+    padding: 12px;
+    border-radius: 12px;
+  }
+}
+
