@@ -56,19 +56,19 @@
 		<div class="nc-sidebar-batches">
 			<?php
 			if ( function_exists( 'notescarrier_get_lms_batches' ) ) :
-				 = notescarrier_get_lms_batches();
-				foreach (  as  ) :
+				$nc_batches = notescarrier_get_lms_batches();
+				foreach ( $nc_batches as $nc_batch ) :
 					?>
-					<a class="nc-sidebar-batch-card" href="<?php echo esc_url( ['url'] ); ?>" target="_blank" rel="noopener">
+					<a class="nc-sidebar-batch-card" href="<?php echo esc_url( $nc_batch['url'] ); ?>" target="_blank" rel="noopener">
 						<div class="nc-sidebar-batch-top">
-							<span class="nc-sidebar-batch-badge <?php echo esc_attr( ['badge_class'] ); ?>"><?php echo esc_html( ['badge'] ); ?></span>
+							<span class="nc-sidebar-batch-badge <?php echo esc_attr( $nc_batch['badge_class'] ); ?>"><?php echo esc_html( $nc_batch['badge'] ); ?></span>
 							<span class="nc-sidebar-batch-free"><?php esc_html_e( 'FREE', 'notescarrier' ); ?></span>
 						</div>
 						<h3 class="nc-sidebar-batch-title">
-							<span aria-hidden="true"><?php echo esc_html( ['icon'] ); ?></span>
-							<span><?php echo esc_html( ['title'] ); ?></span>
+							<span aria-hidden="true"><?php echo esc_html( $nc_batch['icon'] ); ?></span>
+							<span><?php echo esc_html( $nc_batch['title'] ); ?></span>
 						</h3>
-						<span class="nc-sidebar-batch-cat"><?php echo esc_html( ['category'] ); ?></span>
+						<span class="nc-sidebar-batch-cat"><?php echo esc_html( $nc_batch['category'] ); ?></span>
 						<div class="nc-sidebar-batch-btn">
 							<span><?php esc_html_e( 'Enroll Free', 'notescarrier' ); ?></span>
 							<span aria-hidden="true">↗</span>
