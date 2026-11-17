@@ -31,6 +31,8 @@ $latest_page = max( 1, absint( get_query_var( 'paged' ) ), absint( get_query_var
 		</div>
 	</section>
 
+	<?php get_template_part( 'template-parts/promo', 'batches-home' ); ?>
+
 	<div class="container home-layout">
 		<div class="home-feed">
 

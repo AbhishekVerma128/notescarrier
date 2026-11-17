@@ -1577,3 +1577,77 @@ function notescarrier_insert_article_ads( $content ) {
 }
 add_filter( "the_content", "notescarrier_insert_article_ads", 20 );
 
+/**
+ * Return promotional free batches for NotesCarrier LMS.
+ *
+ * @return array List of batch promo items.
+ */
+function notescarrier_get_lms_batches() {
+	return array(
+		array(
+			'id'          => 'science-nirman-2026',
+			'title'       => 'Science Nirman 2026',
+			'badge'       => 'Live / New',
+			'badge_class' => 'nc-badge--live',
+			'icon'        => '🔬',
+			'tagline'     => 'Complete Science (Physics, Chemistry & Biology) with bilingual notes & lectures.',
+			'category'    => 'General Science Special',
+			'price_orig'  => '₹1,999',
+			'price_now'   => '₹0 FREE',
+			'discount'    => '100% OFF',
+			'features'    => array( 'Live Video Lectures', 'Handwritten PDF Notes', 'Chapter Mock Tests' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/science-nirman-2026/', 'science-nirman-2026' ),
+		),
+		array(
+			'id'          => 'ssc-pratham',
+			'title'       => 'SSC Pratham Batch',
+			'badge'       => 'Trending',
+			'badge_class' => 'nc-badge--trending',
+			'icon'        => '🎯',
+			'tagline'     => 'Complete SSC CGL, CHSL, CPO, MTS foundation & practice.',
+			'category'    => 'SSC Foundation 2026',
+			'price_orig'  => '₹2,499',
+			'price_now'   => '₹0 FREE',
+			'discount'    => '100% OFF',
+			'features'    => array( 'All 4 Subjects Covered', 'Bilingual Classes', 'PYQ Topic Tests' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/ssc-pratham/', 'ssc-pratham' ),
+		),
+		array(
+			'id'          => 'english-12',
+			'title'       => 'English 12.0',
+			'badge'       => 'High Demand',
+			'badge_class' => 'nc-badge--popular',
+			'icon'        => '📖',
+			'tagline'     => 'Zero to advanced English grammar, vocab root words & RC.',
+			'category'    => 'Grammar & Vocab Mastery',
+			'price_orig'  => '₹1,499',
+			'price_now'   => '₹0 FREE',
+			'discount'    => '100% OFF',
+			'features'    => array( 'Complete Grammar Rules', 'Daily Vocab Booster', 'Comprehension Tricks' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/english-12/', 'english-12' ),
+		),
+		array(
+			'id'          => 'selection-batch',
+			'title'       => 'Selection Batch',
+			'badge'       => 'Target 2026',
+			'badge_class' => 'nc-badge--target',
+			'icon'        => '🏆',
+			'tagline'     => 'Integrated target course for top ranks in 2026 competitive exams.',
+			'category'    => 'All-in-One Target Course',
+			'price_orig'  => '₹2,999',
+			'price_now'   => '₹0 FREE',
+			'discount'    => '100% OFF',
+			'features'    => array( 'Target 2026 Strategy', 'Speed Calculation Tricks', 'Full Syllabus Coverage' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/selection-batch/', 'selection-batch' ),
+		),
+	);
+}
+
+/**
+ * Return the main LMS hub / portal URL.
+ *
+ * @return string LMS URL.
+ */
+function notescarrier_get_lms_url() {
+	return apply_filters( 'notescarrier_lms_url', 'https://notescarrier.in/lms/' );
+}

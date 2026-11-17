@@ -70,6 +70,7 @@
 	</footer>
 </div>
 <?php get_template_part( 'template-parts/community', 'popup' ); ?>
+<?php get_template_part( 'template-parts/promo', 'mobile-bar' ); ?>
 <?php wp_footer(); ?>
 </body>
 </html>
