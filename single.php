@@ -45,8 +45,7 @@ get_header();
 						);
 						?>
 					</div>
-					<?php get_template_part( 'template-parts/promo', 'article-banner' ); ?>
-					<footer class="article-footer">
+										<footer class="article-footer">
 						<?php the_tags( '<div class="article-tags"><span>' . esc_html__( 'Filed under', 'notescarrier' ) . '</span>', '', '</div>' ); ?>
 						<div class="article-share">
 							<span><?php esc_html_e( 'Enjoyed this resource?', 'notescarrier' ); ?></span>

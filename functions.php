@@ -1651,3 +1651,51 @@ function notescarrier_get_lms_batches() {
 function notescarrier_get_lms_url() {
 	return apply_filters( 'notescarrier_lms_url', 'https://notescarrier.in/lms/' );
 }
+
+/**
+ * Automatically insert the LMS Batch Promo Box into single posts,
+ * ideally right above the first download button, or at the end of content.
+ *
+ * @param string $content Post content.
+ * @return string Modified post content.
+ */
+function notescarrier_insert_article_promo( $content ) {
+	if ( ! is_singular( 'post' ) || ! in_the_loop() || ! is_main_query() ) {
+		return $content;
+	}
+
+	if ( ! function_exists( 'notescarrier_get_lms_batches' ) ) {
+		return $content;
+	}
+
+	static $nc_promo_rendered = false;
+	if ( $nc_promo_rendered ) {
+		return $content;
+	}
+
+	ob_start();
+	get_template_part( 'template-parts/promo', 'article-banner' );
+	$promo_html = ob_get_clean();
+
+	if ( empty( $promo_html ) ) {
+		return $content;
+	}
+
+	$nc_promo_rendered = true;
+
+	$button_patterns = array(
+		'/<div[^>]*class="[^"]*wp-block-buttons[^"]*"[^>]*>/i',
+		'/<div[^>]*class="[^"]*wp-block-button[^"]*"[^>]*>/i',
+		'/<a[^>]*class="[^"]*wp-block-button__link[^"]*"[^>]*>/i',
+	);
+
+	foreach ( $button_patterns as $pattern ) {
+		if ( preg_match( $pattern, $content, $matches, PREG_OFFSET_CAPTURE ) ) {
+			$offset = $matches[0][1];
+			return substr( $content, 0, $offset ) . $promo_html . substr( $content, $offset );
+		}
+	}
+
+	return $content . $promo_html;
+}
+add_filter( 'the_content', 'notescarrier_insert_article_promo', 15 );
