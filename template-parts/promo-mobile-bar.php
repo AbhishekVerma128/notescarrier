@@ -5,7 +5,7 @@
  * @package NotesCarrier
  */
 
-$nc_lms_url = function_exists( "notescarrier_get_lms_url" ) ? notescarrier_get_lms_url() : "https://notescarrier.in/lms/";
+$nc_lms_url = function_exists( "notescarrier_get_lms_url" ) ? notescarrier_get_lms_url() : "https://freebatches.lovable.app/";
 ?>
 <div id="nc-mobile-lms-bar" class="nc-mobile-bar" role="complementary" aria-label="<?php esc_attr_e( "Free LMS Batches Announcement", "notescarrier" ); ?>" style="display:none;">
 	<div class="nc-mobile-bar__inner">

@@ -14,7 +14,7 @@ if ( empty( $nc_batches ) ) {
 	return;
 }
 
-$nc_lms_url = function_exists( "notescarrier_get_lms_url" ) ? notescarrier_get_lms_url() : "https://notescarrier.in/lms/";
+$nc_lms_url = function_exists( "notescarrier_get_lms_url" ) ? notescarrier_get_lms_url() : "https://freebatches.lovable.app/";
 ?>
 
 <div class="nc-article-promo-box" aria-labelledby="nc-article-promo-title">

@@ -1596,7 +1596,7 @@ function notescarrier_get_lms_batches() {
 			'price_now'   => '₹0 FREE',
 			'discount'    => '100% OFF',
 			'features'    => array( 'Live Video Lectures', 'Handwritten PDF Notes', 'Chapter Mock Tests' ),
-			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/science-nirman-2026/', 'science-nirman-2026' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://freebatches.lovable.app/', 'science-nirman-2026' ),
 		),
 		array(
 			'id'          => 'ssc-pratham',
@@ -1610,7 +1610,7 @@ function notescarrier_get_lms_batches() {
 			'price_now'   => '₹0 FREE',
 			'discount'    => '100% OFF',
 			'features'    => array( 'All 4 Subjects Covered', 'Bilingual Classes', 'PYQ Topic Tests' ),
-			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/ssc-pratham/', 'ssc-pratham' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://freebatches.lovable.app/', 'ssc-pratham' ),
 		),
 		array(
 			'id'          => 'english-12',
@@ -1624,7 +1624,7 @@ function notescarrier_get_lms_batches() {
 			'price_now'   => '₹0 FREE',
 			'discount'    => '100% OFF',
 			'features'    => array( 'Complete Grammar Rules', 'Daily Vocab Booster', 'Comprehension Tricks' ),
-			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/english-12/', 'english-12' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://freebatches.lovable.app/', 'english-12' ),
 		),
 		array(
 			'id'          => 'selection-batch',
@@ -1638,7 +1638,7 @@ function notescarrier_get_lms_batches() {
 			'price_now'   => '₹0 FREE',
 			'discount'    => '100% OFF',
 			'features'    => array( 'Target 2026 Strategy', 'Speed Calculation Tricks', 'Full Syllabus Coverage' ),
-			'url'         => apply_filters( 'notescarrier_batch_url', 'https://notescarrier.in/lms/selection-batch/', 'selection-batch' ),
+			'url'         => apply_filters( 'notescarrier_batch_url', 'https://freebatches.lovable.app/', 'selection-batch' ),
 		),
 	);
 }
@@ -1649,7 +1649,7 @@ function notescarrier_get_lms_batches() {
  * @return string LMS URL.
  */
 function notescarrier_get_lms_url() {
-	return apply_filters( 'notescarrier_lms_url', 'https://notescarrier.in/lms/' );
+	return apply_filters( 'notescarrier_lms_url', 'https://freebatches.lovable.app/' );
 }
 
 /**
