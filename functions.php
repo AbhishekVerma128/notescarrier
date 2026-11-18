@@ -1654,7 +1654,8 @@ function notescarrier_get_lms_url() {
 
 /**
  * Automatically insert the LMS Batch Promo Box into single posts,
- * ideally right above the first download button, or at the end of content.
+ * placing it cleanly right above the download buttons or download table,
+ * and never inside table cells/rows.
  *
  * @param string $content Post content.
  * @return string Modified post content.
@@ -1687,15 +1688,65 @@ function notescarrier_insert_article_promo( $content ) {
 		'/<div[^>]*class="[^"]*wp-block-buttons[^"]*"[^>]*>/i',
 		'/<div[^>]*class="[^"]*wp-block-button[^"]*"[^>]*>/i',
 		'/<a[^>]*class="[^"]*wp-block-button__link[^"]*"[^>]*>/i',
+		'/<a[^>]*href="[^"]*(?:drive\.google\.com|mediafire|mega\.nz|t\.me)[^"]*"[^>]*>/i',
 	);
 
+	$match_pos = -1;
 	foreach ( $button_patterns as $pattern ) {
 		if ( preg_match( $pattern, $content, $matches, PREG_OFFSET_CAPTURE ) ) {
-			$offset = $matches[0][1];
-			return substr( $content, 0, $offset ) . $promo_html . substr( $content, $offset );
+			$match_pos = $matches[0][1];
+			break;
 		}
 	}
 
-	return $content . $promo_html;
+	// Fallback if no button or link matched: append at end of content
+	if ( $match_pos === -1 ) {
+		return $content . $promo_html;
+	}
+
+	// Check if the matched position is inside an HTML table
+	$last_table_open  = strrpos( substr( $content, 0, $match_pos ), '<table' );
+	$last_table_close = strrpos( substr( $content, 0, $match_pos ), '</table>' );
+
+	$is_inside_table = ( $last_table_open !== false && ( $last_table_close === false || $last_table_close < $last_table_open ) );
+
+	if ( $is_inside_table ) {
+		// Never insert inside table cells or rows. Find the table's container or the table itself.
+		$insert_pos = $last_table_open;
+
+		$prefix_start = max( 0, $last_table_open - 300 );
+		$prefix_len   = $last_table_open - $prefix_start;
+		$prefix       = substr( $content, $prefix_start, $prefix_len );
+
+		$container_patterns = array(
+			'/<figure[^>]*class="[^"]*wp-block-table[^"]*"[^>]*>/i',
+			'/<div[^>]*style="[^"]*overflow[^"]*"[^>]*>/i',
+			'/<div[^>]*class="[^"]*table[^"]*"[^>]*>/i',
+		);
+
+		foreach ( $container_patterns as $c_pattern ) {
+			if ( preg_match_all( $c_pattern, $prefix, $c_matches, PREG_OFFSET_CAPTURE ) ) {
+				$last_c_match  = end( $c_matches[0] );
+				$container_pos = $prefix_start + $last_c_match[1];
+				$between       = substr( $content, $container_pos, $last_table_open - $container_pos );
+				if ( stripos( $between, '</div' ) === false && stripos( $between, '</figure' ) === false ) {
+					$insert_pos = $container_pos;
+					break;
+				}
+			}
+		}
+
+		return substr( $content, 0, $insert_pos ) . $promo_html . substr( $content, $insert_pos );
+	}
+
+	// If not inside a table, check if button is inside a <div class="wp-block-buttons"> wrapper
+	$prefix_start = max( 0, $match_pos - 200 );
+	$prefix       = substr( $content, $prefix_start, $match_pos - $prefix_start );
+	if ( preg_match( '/<div[^>]*class="[^"]*wp-block-buttons[^"]*"[^>]*>/i', $prefix, $b_match, PREG_OFFSET_CAPTURE ) ) {
+		$insert_pos = $prefix_start + $b_match[0][1];
+		return substr( $content, 0, $insert_pos ) . $promo_html . substr( $content, $insert_pos );
+	}
+
+	return substr( $content, 0, $match_pos ) . $promo_html . substr( $content, $match_pos );
 }
 add_filter( 'the_content', 'notescarrier_insert_article_promo', 15 );

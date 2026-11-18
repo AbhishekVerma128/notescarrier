@@ -1091,6 +1091,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 /* In-Article Promo Callout Box */
 .nc-article-promo-box {
+	clear: both;
 	background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 100%);
 	border: 1px solid #bfdbfe;
 	border-radius: 16px;
@@ -1480,6 +1481,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 	}
 
 	.nc-article-promo-box {
+	clear: both;
 		padding: 20px;
 		margin: 24px 0;
 	}
